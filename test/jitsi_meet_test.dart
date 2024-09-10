@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:jitsi_meet_flutter_sdk/src/jitsi_meet.dart';
 import 'package:jitsi_meet_flutter_sdk/src/jitsi_meet_platform_interface.dart';
@@ -11,11 +12,11 @@ class MockJitsiMeetPlatform
     with MockPlatformInterfaceMixin
     implements JitsiMeetPlatform {
   @override
-  Future<String?> getPlatformVersion() => Future.value('42');
+  Future<String> getPlatformVersion() => Future.value('42');
 
   @override
   Future<MethodResponse> join(
-      JitsiMeetConferenceOptions options, JitsiMeetEventListener? listener) {
+      JitsiMeetConferenceOptions options, JitsiMeetEventListener listener) {
     // TODO: implement join
     throw UnimplementedError();
   }
@@ -40,7 +41,7 @@ class MockJitsiMeetPlatform
 
   @override
   Future<MethodResponse> sendEndpointTextMessage(
-      {String? to, required String message}) {
+      {String to, @required String message}) {
     // TODO: implement sendEndpointTextMessage
     throw UnimplementedError();
   }
@@ -52,14 +53,14 @@ class MockJitsiMeetPlatform
   }
 
   @override
-  Future<MethodResponse> openChat([String? to]) {
+  Future<MethodResponse> openChat([String to]) {
     // TODO: implement openChat
     throw UnimplementedError();
   }
 
   @override
   Future<MethodResponse> sendChatMessage(
-      {String? to, required String message}) {
+      {String to, @required String message}) {
     // TODO: implement sendChatMessage
     throw UnimplementedError();
   }

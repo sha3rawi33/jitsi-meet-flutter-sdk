@@ -73,12 +73,12 @@ class JitsiMeetPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
     onDetachedFromActivity()
   }
   private fun join(call: MethodCall, result: Result) {
-    val serverURL = if (call.argument<String?>("serverURL") != null) URL(call.argument<String?>("serverURL")) else null
-    val room: String? = call.argument("room")
-    val token: String? = call.argument("token")
+    val serverURL = if (call.argument<String>("serverURL") != null) URL(call.argument<String>("serverURL")) else null
+    val room: String = call.argument("room")
+    val token: String = call.argument("token")
     val featureFlags = call.argument<HashMap<String, Any?>>("featureFlags")
     val configOverrides = call.argument<HashMap<String, Any?>>("configOverrides")
-    val rawUserInfo = call.argument<HashMap<String, String?>>("userInfo")
+    val rawUserInfo = call.argument<HashMap<String, String>>("userInfo")
     val displayName = rawUserInfo?.get("displayName")
     val email = rawUserInfo?.get("email")
     val avatar = if (rawUserInfo?.get("avatar") != null) URL(rawUserInfo.get("avatar")) else null
@@ -152,7 +152,7 @@ class JitsiMeetPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   }
 
   private fun sendEndpointTextMessage(call: MethodCall, result: Result) {
-    val to = call.argument<String?>("to")
+    val to = call.argument<String>("to")
     val message = call.argument<String>("message")
     val sendEndpointTextMessageBroadcastIntent: Intent = BroadcastIntentHelper.buildSendEndpointTextMessageIntent(to, message)
     LocalBroadcastManager.getInstance(activity!!.applicationContext).sendBroadcast(sendEndpointTextMessageBroadcastIntent)
@@ -167,14 +167,14 @@ class JitsiMeetPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
   }
 
   private fun openChat(call: MethodCall, result: Result) {
-    val to = call.argument<String?>("to")
+    val to = call.argument<String>("to")
     val openChatIntent: Intent = BroadcastIntentHelper.buildOpenChatIntent(to)
     LocalBroadcastManager.getInstance(activity!!.applicationContext).sendBroadcast(openChatIntent)
     result.success("Successfully opened chat $to")
   }
 
   private fun sendChatMessage(call: MethodCall, result: Result) {
-    val to = call.argument<String?>("to")
+    val to = call.argument<String>("to")
     val message = call.argument<String>("message")
     val sendChatMessageIntent: Intent = BroadcastIntentHelper.buildSendChatMessageIntent(to, message)
     LocalBroadcastManager.getInstance(activity!!.applicationContext).sendBroadcast(sendChatMessageIntent)

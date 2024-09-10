@@ -1,10 +1,12 @@
+import 'package:flutter/material.dart';
+
 class MethodResponse {
   final bool isSuccess;
-  final String? message;
+  final String message;
   final dynamic error;
 
   MethodResponse({
-    required this.isSuccess,
+    @required this.isSuccess,
     this.message,
     this.error,
   });

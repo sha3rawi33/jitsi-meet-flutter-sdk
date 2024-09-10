@@ -121,7 +121,7 @@ The `JitsiMeet` class is the entry point for the sdk. It is used to launch the m
     The constructor for the class.
 
 
-2. ####  join(JitsiMeetConferenceOptions options, [JitsiMeetEventListener? listener])
+2. ####  join(JitsiMeetConferenceOptions options, [JitsiMeetEventListener listener])
     Joins a meeting with the given options and optionally a listener is given
 
     - `options` : meeting options
@@ -138,7 +138,7 @@ The `JitsiMeet` class is the entry point for the sdk. It is used to launch the m
 5. #### setVideoMuted(bool muted)
     Sets the state of the localParticipant video muted according to the `muted` parameter.
 
-6. #### sendEndpointTextMessage({String? to, required String message})
+6. #### sendEndpointTextMessage({String to, required String message})
     Sends a message via the data channel to one particular participant or to all of them. If the `to` param is empty, the message will be sent to all the participants in the conference.
 
     In order to get the participantId, the `participantsJoined` event should be listened for, which have as a parameter the `participantId` and this should be stored somehow.
@@ -146,11 +146,11 @@ The `JitsiMeet` class is the entry point for the sdk. It is used to launch the m
 7. #### toggleScreenShare(bool enabled)
     Sets the state of the localParticipant screen sharing according to the `enabled` parameter.
 
-8. #### openChat([String? to])
+8. #### openChat([String to])
 
     Opens the chat dialog. If `to` contains a valid participantId, the private chat with that particular participant will be opened.
 
-9. #### sendChatMessage({String? to, required String message})
+9. #### sendChatMessage({String to, required String message})
 
     Sends a chat message via to one particular participant or to all of them. If the `to` param is empty, the message will be sent to all the participants in the conference.
 
@@ -207,7 +207,7 @@ This class intends to be used as a listener for events that come from the native
     Called when a conference was joined.
     - `url` : the conference URL
 
-2. #### conferenceTerminated(String url, Object? error)
+2. #### conferenceTerminated(String url, Object error)
 
     Called when the active conference ends, be it because of user choice or because of a failure.
 
@@ -220,7 +220,7 @@ This class intends to be used as a listener for events that come from the native
 
     - url: the conference URL
 
-4. #### participantJoined(String? email, String? name, String? role, String? participantId) 
+4. #### participantJoined(String email, String name, String role, String participantId) 
 
     Called when a participant has joined the conference.
 
@@ -229,7 +229,7 @@ This class intends to be used as a listener for events that come from the native
     - `role` : the role of the participant.
     - `participantId` : the id of the participant.
 
-5. #### participantLeft(String? participantId)
+5. #### participantLeft(String participantId)
 
     Called when a participant has left the conference.
 
@@ -261,7 +261,7 @@ This class intends to be used as a listener for events that come from the native
     - `participantId` : the id of the participant
     - `sharing` : the state of screen share
 
-10. #### chatMessageReceived(String senderId, String message, bool isPrivate, String? timestamp)
+10. #### chatMessageReceived(String senderId, String message, bool isPrivate, String timestamp)
 
     Called when a chat text message is received.
 

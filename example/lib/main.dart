@@ -7,7 +7,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  const MyApp({Key key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -95,7 +95,7 @@ class _MyAppState extends State<MyApp> {
           "participantJoined: email: $email, name: $name, role: $role, "
           "participantId: $participantId",
         );
-        participants.add(participantId!);
+        participants.add(participantId);
       },
       participantLeft: (participantId) {
         debugPrint("participantLeft: participantId: $participantId");
@@ -138,16 +138,16 @@ class _MyAppState extends State<MyApp> {
     await _jitsiMeetPlugin.hangUp();
   }
 
-  setAudioMuted(bool? muted) async {
-    var a = await _jitsiMeetPlugin.setAudioMuted(muted!);
+  setAudioMuted(bool muted) async {
+    var a = await _jitsiMeetPlugin.setAudioMuted(muted);
     debugPrint("$a");
     setState(() {
       audioMuted = muted;
     });
   }
 
-  setVideoMuted(bool? muted) async {
-    var a = await _jitsiMeetPlugin.setVideoMuted(muted!);
+  setVideoMuted(bool muted) async {
+    var a = await _jitsiMeetPlugin.setVideoMuted(muted);
     debugPrint("$a");
     setState(() {
       videoMuted = muted;
@@ -165,8 +165,8 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
-  toggleScreenShare(bool? enabled) async {
-    await _jitsiMeetPlugin.toggleScreenShare(enabled!);
+  toggleScreenShare(bool enabled) async {
+    await _jitsiMeetPlugin.toggleScreenShare(enabled);
 
     setState(() {
       screenShareOn = enabled;

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'jitsi_meet_method_channel.dart';
@@ -26,14 +27,14 @@ abstract class JitsiMeetPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> getPlatformVersion() {
+  Future<String> getPlatformVersion() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
   /// Joins a meeting with the given meeting [options] and
   /// optionally a [listener] is given for listening to events triggered by the native sdks.
   Future<MethodResponse> join(
-      JitsiMeetConferenceOptions options, JitsiMeetEventListener? listener) {
+      JitsiMeetConferenceOptions options, JitsiMeetEventListener listener) {
     throw UnimplementedError('join() has not been implemented.');
   }
 
@@ -58,7 +59,7 @@ abstract class JitsiMeetPlatform extends PlatformInterface {
   /// In order to get the participantId for the [to] parameter, the [JitsiMeetEventListener.participantsJoined]
   /// event should be listened for, which have as a parameter the participantId and this should be stored somehow.
   Future<MethodResponse> sendEndpointTextMessage(
-      {String? to, required String message}) async {
+      {String to, @required String message}) async {
     throw UnimplementedError(
         'sendEndpointTextMessage() has not been implemented.');
   }
@@ -71,7 +72,7 @@ abstract class JitsiMeetPlatform extends PlatformInterface {
 
   /// Opens the chat dialog. If [to] contains a valid participantId, the private chat with that
   /// particular participant will be opened.
-  Future<MethodResponse> openChat([String? to]) async {
+  Future<MethodResponse> openChat([String to]) async {
     throw UnimplementedError('openChat() has not been implemented.');
   }
 
@@ -81,7 +82,7 @@ abstract class JitsiMeetPlatform extends PlatformInterface {
   /// In order to get the participantId for the [to] parameter, the [JitsiMeetEventListener.participantsJoined]
   /// event should be listened for, which have as a parameter the participantId and this should be stored somehow.
   Future<MethodResponse> sendChatMessage(
-      {String? to, required String message}) async {
+      {String to, @required String message}) async {
     throw UnimplementedError('sendChatMessage() has not been implemented.');
   }
 

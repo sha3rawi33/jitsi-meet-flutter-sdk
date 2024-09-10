@@ -5,8 +5,7 @@ homepage: https://jitsi.org/
 repository: https://github.com/jitsi/jitsi-meet-flutter-sdk
 
 environment:
-  sdk: '>=3.0.5 <4.0.0'
-  flutter: ">=3.3.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   flutter:

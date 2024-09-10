@@ -17,10 +17,10 @@ class MethodChannelJitsiMeet extends JitsiMeetPlatform {
   final eventChannel = const EventChannel('jitsi_meet_flutter_sdk_events');
 
   bool _eventChannelIsInitialized = false;
-  JitsiMeetEventListener? _listener;
+  JitsiMeetEventListener _listener;
 
   @override
-  Future<String?> getPlatformVersion() async {
+  Future<String> getPlatformVersion() async {
     final version =
         await methodChannel.invokeMethod<String>('getPlatformVersion');
     return version;
@@ -30,7 +30,7 @@ class MethodChannelJitsiMeet extends JitsiMeetPlatform {
   /// optionally a [listener] is given for listening to events triggered by the native sdks.
   @override
   Future<MethodResponse> join(JitsiMeetConferenceOptions options,
-      JitsiMeetEventListener? listener) async {
+      JitsiMeetEventListener listener) async {
     _listener = listener;
     if (!_eventChannelIsInitialized) {
       _initialize();
@@ -112,7 +112,7 @@ class MethodChannelJitsiMeet extends JitsiMeetPlatform {
   /// event should be listened for, which have as a parameter the participantId and this should be stored somehow.
   @override
   Future<MethodResponse> sendEndpointTextMessage(
-      {String? to, required String message}) async {
+      {String to, @required String message}) async {
     return await methodChannel.invokeMethod<String>('sendEndpointTextMessage',
         {'to': to ?? '', 'message': message}).then((message) {
       return MethodResponse(isSuccess: true, message: message);
@@ -143,7 +143,7 @@ class MethodChannelJitsiMeet extends JitsiMeetPlatform {
   /// Opens the chat dialog. If [to] contains a valid participantId, the private chat with that
   /// particular participant will be opened.
   @override
-  Future<MethodResponse> openChat([String? to]) async {
+  Future<MethodResponse> openChat([String to]) async {
     return await methodChannel.invokeMethod<String>('openChat', {
       'to': to ?? '',
     }).then((message) {
@@ -164,7 +164,7 @@ class MethodChannelJitsiMeet extends JitsiMeetPlatform {
   /// event should be listened for, which have as a parameter the participantId and this should be stored somehow.
   @override
   Future<MethodResponse> sendChatMessage(
-      {String? to, required String message}) async {
+      {String to, @required String message}) async {
     return await methodChannel.invokeMethod<String>('sendChatMessage',
         {'to': to ?? '', 'message': message}).then((message) {
       return MethodResponse(isSuccess: true, message: message);
